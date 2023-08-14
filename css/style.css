@@ -4,7 +4,7 @@
   }
 
 body {
-    background-color: #00b300;
+    background-color: #9ef19e;
     overflow-x: hidden;
   }
 
@@ -22,4 +22,12 @@ img {
     flex-direction: row;
     justify-content: center; 
     align-items: center;
+}
+
+.boton-comprar {
+  background-color: #0d6ed6;
+  color: rgb(230, 230, 59);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
 }

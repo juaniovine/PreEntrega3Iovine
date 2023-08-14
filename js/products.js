@@ -77,30 +77,34 @@ body.append(main)                           // inserto el main
 // listado de productos
 
 const productos = [
-    {id: 1, nombre: "Galletitas Oreo", precio: 520, tipo: "almacen"},
-    {id: 2, nombre: "Alfajor Jorgito", precio: 220, tipo: "almacen"},
-	{id: 3, nombre: "Queso crema Finlandia", precio: 850, tipo: "almacen"},
-	{id: 4, nombre: "Agua Villavicencio", precio: 620, tipo: "bebidas"},
-	{id: 5, nombre: "Coca Cola", precio: 750, tipo: "bebidas"},
-	{id: 6, nombre: "Vino Trivento Malbec", precio: 1200, tipo: "bebidas alcoholicas"},
-	{id: 7, nombre: "Cerveza Heineken", precio: 700, tipo: "bebidas alcoholicas"},
+    {id: 1, nombre: "Galletitas Oreo", precio: 520, tipo: "almacen", imag:"../img/oreo.jpg", alt: "paquete oreo 117 gramos"},
+    {id: 2, nombre: "Alfajor Jorgito", precio: 220, tipo: "almacen", imag:"../img/alfajor-jorgito.png", alt: "alfajor jorgito simple"},
+	{id: 3, nombre: "Queso crema Finlandia light 330gr", precio: 850, tipo: "almacen", imag:"../img/finlandia-light.png", alt: "queso crema finlandia 330 gramos"},
+	{id: 4, nombre: "Agua Villavicencio", precio: 320, tipo: "bebidas", imag:"../img/agua-villaviencio.png", alt: "botella agua villavicencio dos litros"},
+	{id: 5, nombre: "Coca Cola 1,75 ltrs", precio: 950, tipo: "bebidas", imag:"../img/coca-cola.png", alt: "coca cola 1,75 litros"},
+	{id: 6, nombre: "Vino Trivento Malbec", precio: 1200, tipo: "bebidas alcoholicas", imag:"../img/trivento-malbec.png", alt: "vino malbec Trivento medalla"},
+	{id: 7, nombre: "Cerveza Heineken 1 ltr", precio: 700, tipo: "bebidas alcoholicas", imag:"../img/heineken.png", alt: "cerveza heineken un litro"},
 ];
 
-let ulProds = document.createElement('ul')
+let divProds = document.createElement('div')
 
 const botonCompra = document.createElement('button')
 botonCompra.innerHTML = "Agregar"
 
 productos.forEach((prod) => {
-    ulProds.innerHTML += `<img src="" alt="">
+    divProds.innerHTML += `
+                     <div>
                      <h3>${prod.nombre}</h3>
+                     <img src="${prod.imag}" alt="${prod.alt}">
                      <p>Precio: ${prod.precio}</p>
                      <p>Tipo: ${prod.tipo}</p>
+                     <button class="boton-comprar"><strong>Agregar al Carrito</strong></button>
+                     </div>
                      `
-
 })
 
-main.append(ulProds)
+
+main.append(divProds)
 
 
 
