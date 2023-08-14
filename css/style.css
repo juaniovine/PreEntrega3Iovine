@@ -4,7 +4,7 @@
   }
 
 body {
-    background-color: rgb(3, 146, 3);
+    background-color: #00b300;
     overflow-x: hidden;
   }
 
@@ -17,4 +17,9 @@ img {
     list-style-type: none
   }
 
-  
+  menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+}

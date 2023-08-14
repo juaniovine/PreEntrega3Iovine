@@ -1,62 +1,78 @@
 // Defino mis elementos
 const head = document.head
 const body = document.body
-const navbar = document.getElementById('navbar')
-
-
-
-//practica en clase
-
-// como crear el titulo de la url
-const titulo = document.createElement('title') // creo el elemento titulo
-
-titulo.innerText = "Maxiquisco FC - JS 3ra entrega" //agrego el contenido
-
-head.appendChild(titulo) // agrego el elemento a mi estructura
-
+const divs = document.createElement('div')
 
 // HEAD
 
 // meta
 // link
 // title
+const titulo = document.createElement('title') // creo el elemento titulo
+
+titulo.innerText = "Maxiquiosco FC - JS 3ra entrega" //agrego el contenido
+
+head.appendChild(titulo) // agrego el elemento a mi estructura
 
 
 // BODY
+
 // navbar
+const header = document.createElement('header')
+
+// logo
+const divLogo = document.createElement('div')
+divLogo.innerHTML = `<img src="/img/logo.jpg" alt="Logo Maxiquiosco FC">`
+divLogo.style.width = '10%'
+
+header.append(divLogo)
+
+const navBar = document.createElement('navbar')
+const uls = document.createElement('ul')
+header.className = 'menu'
+divs.className = 'nav-menu' // asigno una clase a mi menu
+
+const links = [             // creo los links de mi menu
+    {
+        page: 'index',
+        link: 'Home'
+    },
+    {
+        page: 'products',
+        link: 'Productos'
+    },
+    {
+        page: 'cart',
+        link: 'Carrito'
+    },
+    {
+        page: 'contact',
+        link: 'Contacto'
+    }
+]
+
+body.prepend(header)
+header.append(navBar)
+navBar.append(divs)
+divs.append(uls)
 
 
-// const links = ['Home','Productos','Carrito','Contacto']
 
-// for ( const link of links) {
-//     const li = document.createElement('li')
-//     li.innerHTML = link
-//     navbar.appendChild(li)
-// }
+header.style.background = 'grey'
 
+// Titulo de index
+const h1Titulo = document.createElement('h1') //asigno el tag titulo a un H1
 
-// Titulo del maxiquiosco
-const h1 = document.createElement('h1') //asigno el tag titulo a un H1
+h1Titulo.innerHTML = `<strong>Maxiquiosco FC</strong>`; // genero el texto para mi tag h1
+h1Titulo.style.color = 'white'
+document.body.append(h1Titulo) // Agrego el nodo titulo
 
-h1.innerHTML = `<strong>Maxiquisco FC</strong>`; // genero el texto para mi tag h1
-h1.style.color = 'black'
-document.body.append(h1) // Agrego el nodo titulo
-
-// let titulo = document.createElement("h1"); //asigno el tag titulo a un H1
-
-// titulo.innerHTML = "<h1>Maxikiosco FC</h1>"; // genero el texto para mi tag titulo
-
-// document.body.append(titulo) // Agrego el nodo titulo
 
 // searchBar
 
-
-
-// contenido main page
-
-
-// promociones main
-
+// main
+const main = document.createElement('main') //creo el main
+body.append(main)                           // inserto el main
 
 // listado de productos
 
@@ -70,15 +86,21 @@ const productos = [
 	{id: 7, nombre: "Cerveza Heineken", precio: 700, tipo: "bebidas alcoholicas"},
 ];
 
-let ul = document.createElement('ul')
+let ulProds = document.createElement('ul')
+
+const botonCompra = document.createElement('button')
+botonCompra.innerHTML = "Agregar"
 
 productos.forEach((prod) => {
-    ul.innerHTML += `<h3>${prod.nombre}</h3>
-                      <p>Precio: ${prod.precio}</p>
-                      <p>Tipo: ${prod.tipo}</p>`
+    ulProds.innerHTML += `<img src="" alt="">
+                     <h3>${prod.nombre}</h3>
+                     <p>Precio: ${prod.precio}</p>
+                     <p>Tipo: ${prod.tipo}</p>
+                     `
+
 })
 
-body.appendChild(ul)
+main.append(ulProds)
 
 
 
@@ -92,62 +114,13 @@ body.appendChild(ul)
 
 // FOOTER
 
+const footer = document.createElement('footer')
+body.append(footer)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let padre = document.getElementById("personas")
-
-// let personas = ["Homero","Marge","Bart","Lisa","Maggie"]
-
-// for (const persona of personas){
-//     let li = document.createElement("li")
-//     li.innerHTML = persona
-//     padre.appendChild(li);
-// }
-
-// let producto = {id: 1, nombre: "Arroz", precio: 125};
-
-// let contenedor = document.createElement("div");
-
-// contenedor.innerHTML = '<h3>ID: ${producto.id}</h3> <p>Producto: ${producto.name}</p> <b>$ ${producto.precio}</b>';
-
-// document.body.appendChild(contenedor);
-
-
-// const productos = [
-//     {id: 1, nombre: "Galletitas", precio: 520, tipo: "almacen"},
-//     {id: 2, nombre: "Alfajores", precio: 220, tipo: "almacen"},
-// 	{id: 3, nombre: "Queso crema", precio: 850, tipo: "almacen"},
-// 	{id: 4, nombre: "Agua", precio: 620, tipo: "bebidas"},
-// 	{id: 5, nombre: "Gaseosa", precio: 750, tipo: "bebidas"},
-// 	{id: 6, nombre: "Vino", precio: 1200, tipo: "bebidas alcoholicas"},
-// 	{id: 7, nombre: "Cerveza", precio: 700, tipo: "bebidas alcoholicas"},
-// ];
-
-// for (const producto of productos){
-//     let contenedor = document.createElement("div");
-//     contenedor.innerHTML = '<h3>ID: ${producto.id}</h3> <p>Producto: ${producto.nombre}</p> <b>$ ${producto.precio}</b>';
-
-// document.body.appendChild(contenedor); 
-// }
-
-
-
-
+footer.className = 'footer'
+footer.innerHTML = `
+                    Contenido para el footer - Links redes sociales - Fecha - Derechos reservados
+                   `
+footer.style.background = '#80ff80'
 
 
