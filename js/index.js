@@ -64,10 +64,10 @@ header.style.background = 'grey'
 
 
 // Titulo de index
-const h1Titulo = document.createElement('h1') //asigno el tag titulo a un H1
+const h1Titulo = document.createElement('h1') //creo el tag titulo a un H1
 
 h1Titulo.innerHTML = `<strong>Maxiquiosco FC</strong>`; // genero el texto para mi tag h1
-h1Titulo.style.color = 'white'
+h1Titulo.style.color = 'black' // agrego los estilos a mi h1
 document.body.append(h1Titulo) // Agrego el nodo titulo
 
 
@@ -77,14 +77,23 @@ body.append(main)                           // inserto el main
 
 const sectionMain = document.createElement('section') //creo la section
 sectionMain.style.background = '#bfffbf'              // aplico estilos
-sectionMain.id = 'promos'                             // agrego un ID "contenedor" PROMOS 
+sectionMain.id = 'home-main'                          // agrego un ID "contenedor" 
 main.append(sectionMain)                              // inserto la section
 
-sectionMain.innerHTML = `<img src="/img/cancha-aerea.jpeg" alt="pasto"> Contenido`
+sectionMain.innerHTML = `<img src="/img/boca-dentro-pasto.jpeg" alt="">Contenido`
 
 
 // promociones main
 
+const sectionPromos = document.createElement('section') //creo la section
+sectionPromos.style.background = '#bfffbf'              // aplico estilos
+sectionPromos.id = 'home-promos'                        // agrego un ID "contenedor"
+main.append(sectionPromos)                              // inserto la section
+
+sectionPromos.innerHTML = `<strong>Promociones</strong>
+                          <img src="/img/cancha-aerea.jpeg" alt="pasto"> Contenido
+                          Contenido promos
+                          `
 
 
 
