@@ -5,7 +5,6 @@ const header = document.createElement('header')
 const divs = document.createElement('div')
 
 
-
 // HEAD
 
 // meta
@@ -26,6 +25,7 @@ divLogo.style.width = '10%'
 
 header.append(divLogo)
 
+
 // navbar
 const navBar = document.createElement('navbar')
 const uls = document.createElement('ul')
@@ -45,10 +45,6 @@ const links = [             // creo los links de mi menu
     {
         page: 'contact',
         link: 'Contacto'
-    },
-    {
-        page: 'cart',
-        link: '🛒'
     }
 ]
 
@@ -94,7 +90,7 @@ main.append(productosContent)
 
 // carrito
 const carrito = [];
-
+// carrito vacio
 carrito.length === 0 && console.log('El carrito está vacío')
 
 productos.forEach((prod) => {
@@ -123,26 +119,94 @@ productos.forEach((prod) => {
             img: prod.imag,
             nombre: prod.nombre,
             precio: prod.precio,
-            stock: prod.stock,        
-        }); 
+            // stock: prod.stock,        
+        });
+
     // JSON para item onclick
-    localStorage.setItem('Productos', JSON.stringify((carrito)))
+    localStorage.setItem('Carrito', JSON.stringify((carrito)))
 
     // calculo de stock onclick
-    prod.stock > 0 ? console.log('Hay stock') : alert('Lo sentimos, pero no queda stock de ' + prod.nombre)
-    
+    prod.stock > 0 ? console.log('Hay stock de ' + prod.nombre) : alert('Lo sentimos, pero no queda stock de ' + prod.nombre)
     }
-    
 })
 
+// div para el acceso al carrito
+const divModal = document.createElement('div')
+divModal.innerHTML = "<button>🛒</button>"
+divModal.className = 'modal-carrito'
+header.append(divModal)
 
-// const carritoProductos = sessionStorage.getItem('Producto')
 
-// console.log(carritoProductos)
+// accion sobre el boton Cart
+divModal.addEventListener("click", () => {
+    const modalHeader = document.createElement('div')
+    modalHeader.className ='modal-header'
+    modalHeader.innerHTML = `
+        <h2 class="modal-title">Carrito de compras</h2>
+    `;
+    divModal.append(modalHeader);
+    // creo el boton para cerrar el modal
+    const modalCancel = document.createElement('p')
+    modalCancel.className ='modal-cancel'
+    modalCancel.innerHTML = `x`;
+    divModal.append(modalCancel);
+    // creo el contenido de mi modal
 
-// localStorage.setItem("En carrito",carritos)
-// const carritoSeleccionado = localStorage.getItem("En carrito").split(' ')
-// console.log(carritoSeleccionado)
+    //busco mis productos
+
+    carrito.forEach((producto) => { // Changed variable name from 'productos' to 'producto'
+        let carritoContent = document.createElement('div')
+        carritoContent.className = "modal-content"
+        carritoContent.innerHTML = ` 
+                    <h3>${producto.nombre}</h3>
+                    <img src="${producto.img}" alt="${producto.alt}">
+                    <p>Precio: $${producto.precio}</p>
+        `
+        modalHeader.append(carritoContent)
+    })
+
+    const total = carrito.reduce((acc, elemento) => acc + elemento.precio, 0);
+    // Display total in the modal
+    const totalElement = document.createElement('p');
+    totalElement.textContent = `Total: $${total}`;
+    modalHeader.append(totalElement);
+})
+
+// // accion sobre el boton Cart
+// divModal.addEventListener("click", () => {
+//     const modalHeader = document.createElement('div')
+//     modalHeader.className ='modal-header'
+//     modalHeader.innerHTML = `
+//         <h2 class="modal-title">Carrito de compras</h2>
+//     `;
+//     divModal.append(modalHeader);
+//     // creo el boton para cerrar el modal
+//     const modalCancel = document.createElement('p')
+//     modalCancel.className ='modal-cancel'
+//     modalCancel.innerHTML = `x`;
+//     divModal.append(modalCancel);
+//     // creo el contenido de mi modal
+
+//     //busco mis productos
+
+//     carrito.forEach((producto) => {
+//         let carritoContent = document.createElement('div')
+//         carritoContent.className = "modal-content"
+//         carritoContent.innerHTML = ` 
+//                     <h3>${prod.nombre}</h3>
+//                     <img src="${prod.imag}" alt="${prod.alt}">
+//                     <p>Precio: $${prod.precio}</p>
+//         `
+//         modalHeader.append(carritoContent)
+//     })
+//     const total = carrito.reduce((acc, elemento) => acc + elemento.precio,0)
+
+// // Display total in the modal
+// const totalElement = document.createElement('p');
+// totalElement.textContent = `Total: $${total}`;
+// modalHeader.append(totalElement);
+
+// })
 
 
 // FOOTER

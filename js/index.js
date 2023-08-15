@@ -29,6 +29,11 @@ divLogo.style.width = '10%'
 
 header.append(divLogo)
 
+const divModal = document.createElement('div')
+divModal.innerHTML = `🛒`
+divModal.className = 'modal'
+header.append(divModal)
+
 const navBar = document.createElement('navbar')
 const uls = document.createElement('ul')
 header.className = 'menu'
@@ -47,10 +52,7 @@ const links = [             // creo los links de mi menu
         page: 'contact',
         link: 'Contacto'
     },
-    {
-        page: 'cart',
-        link: '🛒'
-    }
+
 ]
 
 body.prepend(header)
