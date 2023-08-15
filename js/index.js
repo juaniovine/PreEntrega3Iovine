@@ -44,12 +44,12 @@ const links = [             // creo los links de mi menu
         link: 'Productos'
     },
     {
-        page: 'cart',
-        link: 'Carrito'
-    },
-    {
         page: 'contact',
         link: 'Contacto'
+    },
+    {
+        page: 'cart',
+        link: '🛒'
     }
 ]
 
@@ -91,8 +91,7 @@ sectionPromos.id = 'home-promos'                        // agrego un ID "contene
 main.append(sectionPromos)                              // inserto la section
 
 sectionPromos.innerHTML = `<strong>Promociones</strong>
-                          <img src="/img/cancha-aerea.jpeg" alt="pasto"> Contenido
-                          Contenido promos
+                          <img src="/img/cancha-aerea.jpeg" alt="pasto"> Descuentos para nuestros clientes registrados
                           `
 
 

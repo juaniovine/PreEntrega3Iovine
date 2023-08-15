@@ -5,7 +5,7 @@
   }
 
 body {
-    background-color: #9ef19e;
+    background-color: #f5ee8ab2; 
     overflow-x: hidden;
   }
 
@@ -35,7 +35,7 @@ menu {
 
 
 /* Productos */
-#boton-comprar {
+.btn-comprar {
   background-color: #0d6ed6;
   color: rgb(230, 230, 59);
   border: none;
@@ -53,6 +53,7 @@ menu {
 
 .contenedor-productos {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
 
@@ -63,9 +64,10 @@ menu {
   max-width: 300px;
   margin: auto;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .card button:hover {
   opacity: 0.8;
 }
+

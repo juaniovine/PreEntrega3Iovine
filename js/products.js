@@ -1,8 +1,8 @@
 // Defino mis elementos
 const head = document.head
 const body = document.body
+const header = document.createElement('header')
 const divs = document.createElement('div')
-
 
 
 
@@ -17,11 +17,7 @@ titulo.innerText = "Maxiquiosco FC - JS 3ra entrega" //agrego el contenido
 
 head.appendChild(titulo) // agrego el elemento a mi estructura
 
-
 // BODY
-
-// navbar
-const header = document.createElement('header')
 
 // logo
 const divLogo = document.createElement('div')
@@ -30,10 +26,12 @@ divLogo.style.width = '10%'
 
 header.append(divLogo)
 
+// navbar
 const navBar = document.createElement('navbar')
 const uls = document.createElement('ul')
 header.className = 'menu'
 divs.className = 'nav-menu' // asigno una clase a mi menu
+
 
 const links = [             // creo los links de mi menu
     {
@@ -45,12 +43,12 @@ const links = [             // creo los links de mi menu
         link: 'Productos'
     },
     {
-        page: 'cart',
-        link: 'Carrito'
-    },
-    {
         page: 'contact',
         link: 'Contacto'
+    },
+    {
+        page: 'cart',
+        link: '🛒'
     }
 ]
 
@@ -80,35 +78,71 @@ body.append(main)                           // inserto el main
 // listado de productos
 
 const productos = [
-    {id: 1, nombre: "Galletitas Oreo", precio: 520, tipo: "almacen", imag:"../img/oreo.jpg", alt: "paquete oreo 117 gramos"},
-    {id: 2, nombre: "Alfajor Jorgito", precio: 220, tipo: "almacen", imag:"../img/alfajor-jorgito.png", alt: "alfajor jorgito simple"},
-	{id: 3, nombre: "Queso Finlandia light 330gr", precio: 850, tipo: "almacen", imag:"../img/finlandia-light.png", alt: "queso crema finlandia 330 gramos"},
-	{id: 4, nombre: "Agua Villavicencio", precio: 320, tipo: "bebidas", imag:"../img/agua-villavicencio.png", alt: "botella agua villavicencio dos litros"},
-	{id: 5, nombre: "Coca Cola 1,75 ltrs", precio: 950, tipo: "bebidas", imag:"../img/coca-cola.png", alt: "coca cola 1,75 litros"},
-	{id: 6, nombre: "Vino Trivento Malbec", precio: 1200, tipo: "bebidas alcoholicas", imag:"../img/trivento-malbec.png", alt: "vino malbec Trivento medalla"},
-	{id: 7, nombre: "Cerveza Heineken 1 ltr", precio: 700, tipo: "bebidas alcoholicas", imag:"../img/heineken.png", alt: "cerveza heineken un litro"},
+    {id: 1, nombre: "Galletitas Oreo", precio: 520, stock: 50, tipo: "almacen", imag:"../img/oreo.jpg", alt: "paquete oreo 117 gramos"},
+    {id: 2, nombre: "Alfajor Jorgito", precio: 220, stock: 100, tipo: "almacen", imag:"../img/alfajor-jorgito.png", alt: "alfajor jorgito simple"},
+	{id: 3, nombre: "Queso Finlandia light 330gr", precio: 850, stock: 0, tipo: "almacen", imag:"../img/finlandia-light.png", alt: "queso crema finlandia 330 gramos"},
+	{id: 4, nombre: "Agua Villavicencio", precio: 320, stock: 200, tipo: "bebidas", imag:"../img/agua-villavicencio.png", alt: "botella agua villavicencio dos litros"},
+	{id: 5, nombre: "Coca Cola 1,75 ltrs", precio: 950, stock: 200, tipo: "bebidas", imag:"../img/coca-cola.png", alt: "coca cola 1,75 litros"},
+	{id: 6, nombre: "Vino Trivento Malbec", precio: 1200, stock: 10, tipo: "bebidas alcoholicas", imag:"../img/trivento-malbec.png", alt: "vino malbec Trivento medalla"},
+	{id: 7, nombre: "Cerveza Heineken 1 ltr", precio: 700, stock: 150, tipo: "bebidas alcoholicas", imag:"../img/heineken.png", alt: "cerveza heineken un litro"},
 ];
 
 //creo el listado de productos
-const divProds = document.createElement('div')
+const productosContent = document.createElement('div')
+productosContent.className ='contenedor-productos'
+main.append(productosContent)
 
 // carrito
-let carrito = [];
+const carrito = [];
+
+carrito.length === 0 && console.log('El carrito está vacío')
 
 productos.forEach((prod) => {
-    divProds.className ='contenedor-productos'
+    const divProds = document.createElement('div')    
+    divProds.className ='card'
     divProds.innerHTML += `
-                     <div class="card">
+                     <div>
                      <h3>${prod.nombre}</h3>
                      <img src="${prod.imag}" alt="${prod.alt}">
                      <p>Precio: $${prod.precio}</p>
-                     <button id="boton-comprar"><strong>Agregar al Carrito</strong></button>
-                     <button id="cantidad" type="number">Cantidad</button>
                      </div>
-                     `
+                     `;
+    
+    // creo y agrego el boton para comprar
+    const btnComprar = document.createElement('button')
+    btnComprar.innerText = "Agregar al carrito"
+    divProds.append(btnComprar)
+    btnComprar.className = 'btn-comprar'
+    //ejecuto todo el foreach en un <div>
+    main.append(divProds);
+
+    //agregar el producto al carrito
+    btnComprar.onclick = () => {
+        carrito.push({
+            id: prod.id,
+            img: prod.imag,
+            nombre: prod.nombre,
+            precio: prod.precio,
+            stock: prod.stock,        
+        }); 
+    // JSON para item onclick
+    localStorage.setItem('Productos', JSON.stringify((carrito)))
+
+    // calculo de stock onclick
+    prod.stock > 0 ? console.log('Hay stock') : alert('Lo sentimos, pero no queda stock de ' + prod.nombre)
+    
+    }
+    
 })
 
-main.append(divProds)
+
+// const carritoProductos = sessionStorage.getItem('Producto')
+
+// console.log(carritoProductos)
+
+// localStorage.setItem("En carrito",carritos)
+// const carritoSeleccionado = localStorage.getItem("En carrito").split(' ')
+// console.log(carritoSeleccionado)
 
 
 // FOOTER
